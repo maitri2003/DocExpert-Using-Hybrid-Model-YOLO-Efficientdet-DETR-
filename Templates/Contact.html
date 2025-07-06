@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Book Appointment{% endblock %} - DocExper</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #4e73df;
+            --secondary-color: #1cc88a;
+            --dark-color: #2c3e50;
+            --light-color: #f8f9fa;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+            min-height: 100vh;
+        }
+        
+        /* Navbar with gradient */
+        .navbar {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #224abe 100%);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 15px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar.scrolled {
+            padding: 10px 0;
+            background: linear-gradient(135deg, var(--primary-color) 0%, #224abe 100%);
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.8rem;
+            letter-spacing: 1px;
+        }
+        
+        .nav-link {
+            font-weight: 500;
+            padding: 8px 15px !important;
+            margin: 0 5px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        /* Appointment Form */
+        .appointment-container {
+            padding: 80px 0;
+        }
+        
+        .appointment-form {
+            max-width: 700px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .appointment-form:hover {
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+            transform: translateY(-5px);
+        }
+        
+        .form-header {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .form-header h2 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--dark-color);
+            margin-bottom: 15px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .form-header p {
+            color: #6c757d;
+            font-size: 1.1rem;
+        }
+        
+        .form-header::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            border-radius: 2px;
+        }
+        
+        .form-label {
+            font-weight: 600;
+            color: var(--dark-color);
+            margin-bottom: 8px;
+        }
+        
+        .form-control, .form-select {
+            padding: 12px 15px;
+            border-radius: 8px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .form-control:focus, .form-select:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.25rem rgba(78, 115, 223, 0.25);
+            transform: translateY(-2px);
+        }
+        
+        .btn-submit {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #224abe 100%);
+            border: none;
+            color: white;
+            padding: 14px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 10px;
+            box-shadow: 0 4px 15px rgba(78, 115, 223, 0.3);
+        }
+        
+        .btn-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(78, 115, 223, 0.4);
+        }
+        
+        .btn-submit:active {
+            transform: translateY(1px);
+        }
+        
+        /* Form group animation */
+        .form-group {
+            margin-bottom: 25px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.5s forwards;
+        }
+        
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Delay animations for each form group */
+        .form-group:nth-child(1) { animation-delay: 0.1s; }
+        .form-group:nth-child(2) { animation-delay: 0.2s; }
+        .form-group:nth-child(3) { animation-delay: 0.3s; }
+        .form-group:nth-child(4) { animation-delay: 0.4s; }
+        .form-group:nth-child(5) { animation-delay: 0.5s; }
+        .form-group:nth-child(6) { animation-delay: 0.6s; }
+        .form-group:nth-child(7) { animation-delay: 0.7s; }
+        
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--dark-color) 0%, #1a252f 100%);
+            color: white;
+            padding: 40px 0 20px;
+            position: relative;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+        }
+        
+        footer p {
+            margin: 0;
+            font-size: 1rem;
+        }
+        
+        .social-icons {
+            margin: 20px 0;
+        }
+        
+        .social-icons a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            text-align: center;
+            line-height: 40px;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icons a:hover {
+            background: var(--primary-color);
+            transform: translateY(-5px);
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .appointment-form {
+                padding: 30px 20px;
+            }
+            
+            .form-header h2 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand animate__animated animate__fadeInLeft" href="{{ url_for('home') }}">
+                <i class="fas fa-bone me-2"></i>DocExper
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item animate__animated animate__fadeInDown">
+                        <a class="nav-link" href="{{ url_for('home') }}">Home</a>
+                    </li>
+                    <li class="nav-item animate__animated animate__fadeInDown">
+                        <a class="nav-link active" href="{{ url_for('book') }}">Contact</a>
+                    </li>
+                    <li class="nav-item animate__animated animate__fadeInDown">
+                        <a class="nav-link" href="{{ url_for('appointments') }}">Appointments</a>
+                    </li>
+                    {% if session.get('user_id') %}
+                    <li class="nav-item animate__animated animate__fadeInDown">
+                        <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item animate__animated animate__fadeInDown">
+                        <a class="nav-link" href="{{ url_for('login') }}">Login</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Appointment Form Section -->
+    <section class="appointment-container">
+        <div class="appointment-form animate__animated animate__fadeIn">
+            <div class="form-header">
+                <h2>Book an Appointment</h2>
+                <p>Fill out the form below to schedule your visit</p>
+            </div>
+            
+            <form action="{{ url_for('book') }}" method="post">
+                <div class="form-group">
+                    <label for="fullName" class="form-label">
+                        <i class="fas fa-user me-2"></i>Full Name
+                    </label>
+                    <input type="text" class="form-control" id="fullName" name="fullName" placeholder="Enter your full name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email" class="form-label">
+                        <i class="fas fa-envelope me-2"></i>Email Address
+                    </label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone" class="form-label">
+                        <i class="fas fa-phone me-2"></i>Phone Number
+                    </label>
+                    <input type="tel" class="form-control" id="phone" name="phone" placeholder="Enter your phone number" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="hospital" class="form-label">
+                        <i class="fas fa-hospital me-2"></i>Select Nearest Hospital
+                    </label>
+                    <select class="form-select" id="hospital" name="hospital" required>
+                        <option value="">Fetching nearby hospitals...</option>
+                    </select>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="appointmentDate" class="form-label">
+                                <i class="fas fa-calendar-day me-2"></i>Preferred Date
+                            </label>
+                            <input type="date" class="form-control" id="appointmentDate" name="appointmentDate" required>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="appointmentTime" class="form-label">
+                                <i class="fas fa-clock me-2"></i>Preferred Time
+                            </label>
+                            <input type="time" class="form-control" id="appointmentTime" name="appointmentTime" required>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="notes" class="form-label">
+                        <i class="fas fa-notes-medical me-2"></i>Additional Notes
+                    </label>
+                    <textarea class="form-control" id="notes" name="notes" rows="3" placeholder="Any additional requests or details..."></textarea>
+                </div>
+                
+                <button type="submit" class="btn btn-submit">
+                    <i class="fas fa-paper-plane me-2"></i>Submit Appointment Request
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="text-center">
+        <div class="container">
+            <div class="social-icons">
+                <a href="#" class="animate__animated animate__fadeIn"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="animate__animated animate__fadeIn" style="animation-delay: 0.1s;"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="animate__animated animate__fadeIn" style="animation-delay: 0.2s;"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="animate__animated animate__fadeIn" style="animation-delay: 0.3s;"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            <p class="animate__animated animate__fadeIn">&copy; 2024 DocExper. All rights reserved.</p>
+            <p class="animate__animated animate__fadeIn">Designed with <i class="fas fa-heart" style="color: #ff6b6b;"></i> for better healthcare access</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Navbar scroll effect
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 100) {
+                $('.navbar').addClass('scrolled');
+            } else {
+                $('.navbar').removeClass('scrolled');
+            }
+        });
+        
+        // Initialize animations when elements come into view
+        $(document).ready(function() {
+            // Animate elements when they come into view
+            $(window).scroll(function() {
+                $('.animate__animated').each(function() {
+                    var position = $(this).offset().top;
+                    var scroll = $(window).scrollTop();
+                    var windowHeight = $(window).height();
+                    
+                    if (scroll + windowHeight > position + 100) {
+                        $(this).addClass($(this).data('animate'));
+                    }
+                });
+            });
+            
+            // Trigger scroll event once to check initial positions
+            $(window).trigger('scroll');
+            
+            // Set minimum date to today
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById("appointmentDate").min = today;
+        });
+
+        // Hospital location script
+        document.addEventListener("DOMContentLoaded", function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            const hospitalName = urlParams.get('hospital'); // Get the hospital name from the URL
+    
+            // Check for Geolocation API support
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(position => {
+                    fetchNearbyHospitals(position, hospitalName); // Pass hospitalName to the function
+                }, handleError);
+            } else {
+                alert("Geolocation is not supported by this browser.");
+                document.getElementById("hospital").innerHTML = '<option value="">Please enter hospital name manually</option>';
+            }
+    
+            function fetchNearbyHospitals(position, hospitalName) { // Accept hospitalName as an argument
+                const lat = position.coords.latitude;
+                const lon = position.coords.longitude;
+    
+                const query = `
+                    [out:json];
+                    node
+                      ["amenity"="hospital"]
+                      (around:6000, ${lat}, ${lon});
+                    out;
+                `;
+    
+                fetch(`https://overpass-api.de/api/interpreter?data=${encodeURIComponent(query)}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        const hospitalSelect = document.getElementById("hospital");
+                        hospitalSelect.innerHTML = '<option value="">Select nearest hospital...</option>';
+    
+                        data.elements.forEach(hospital => {
+                            const option = document.createElement("option");
+                            option.value = hospital.tags.name || "Unnamed Hospital";
+                            option.textContent = hospital.tags.name || "Unnamed Hospital";
+                            hospitalSelect.appendChild(option);
+                        });
+    
+                        // Set the selected hospital if it exists
+                        if (hospitalName) {
+                            hospitalSelect.value = hospitalName;
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Error fetching hospitals:", error);
+                        hospitalSelect.innerHTML = '<option value="">Could not fetch hospitals. Please enter manually.</option>';
+                    });
+            }
+    
+            function handleError(error) {
+                console.error("Geolocation error:", error);
+                document.getElementById("hospital").innerHTML = '<option value="">Location access denied. Please enter hospital name manually.</option>';
+            }
+        });
+    </script>
+</body>
+</html>

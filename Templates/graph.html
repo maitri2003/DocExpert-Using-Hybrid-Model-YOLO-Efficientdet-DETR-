@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detection Results</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Redirect after 4 seconds
+        setTimeout(() => {
+            window.location.href = "{{ url_for('map_view') }}"; // Replace 'another_page' with your route name
+        }, 4000);
+    </script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f5f5f5;
+        }
+        .chart-container {
+            width: 80%;
+            max-width: 60px;
+        }
+    </style>
+</head>
+<body>
+    <div class="chart-container">
+        <canvas id="resultChart"></canvas>
+    </div>
+
+    <script>
+        // Data mapping
+        const names = {
+            0: 'boneanomaly', 
+            1: 'bonelesion', 
+            2: 'foreignbody', 
+            3: 'fracture',
+            4: '', 
+            5: 'periostealreaction', 
+            6: 'pronatorsign', 
+            7: 'softtissue', 
+            8: 'text'
+        };
+
+        // Result list passed from backend
+        const resultList = {{ result_list | tojson }};
+
+        // Prepare data for chart
+        const labels = resultList.map(item => names[item[0]] || "Unknown");
+        const accuracies = resultList.map(item => item[1]);
+
+        const ctx = document.getElementById('resultChart').getContext('2d');
+        const chart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Detection Accuracy',
+                    data: accuracies,
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 1
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: true
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
