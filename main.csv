@@ -1,0 +1,53 @@
+User Prompt,Chatbot Response
+How do I create an account?,"To create an account, please provide your full name, email, and phone number."
+I forgot my password.,"Please provide your registered email, and I'll send you a password reset link."
+Can I update my profile details?,"Yes, you can update your profile details from the settings menu."
+How do I log in?,Enter your registered email and password to log in.
+Can I delete my account?,You can request account deletion from the settings menu.
+What if I don't receive a password reset email?,Check your spam folder or try requesting the reset again.
+Can I use my phone number instead of email to log in?,"Currently, login is only available via email."
+Do I need to verify my email?,"Yes, a verification email will be sent upon registration."
+How do I change my password?,You can change your password in the account settings.
+Is my account information secure?,"Yes, we use encryption to protect your data."
+How do I log out?,Click on 'Logout' in the settings menu.
+Can I register with Google or Facebook?,"Currently, we only support email-based registration."
+Why is my account locked?,Your account may be locked after multiple failed login attempts.
+Can I have multiple accounts?,Each user is allowed only one account.
+How do I enable two-factor authentication?,Go to security settings and enable 2FA.
+How do I change my registered email?,You can update your email in profile settings.
+What should I do if I can't access my email?,Contact support to update your email address.
+Can I retrieve deleted account data?,"No, once deleted, the data cannot be recovered."
+Can I set up a profile for my child?,"Yes, parental control options are available."
+Can I change my username?,Usernames are permanent and cannot be changed.
+How can I secure my account?,Use a strong password and enable two-factor authentication.
+Can I deactivate my account temporarily?,"Yes, you can choose to deactivate it instead of deleting."
+Will my data be shared with third parties?,"No, your data remains private and secure."
+How do I retrieve a forgotten username?,You can check your profile settings for your username.
+Can I register without a phone number?,"Yes, phone number is optional for registration."
+Can I recover an old account?,You can try logging in or contact support for recovery.
+Can I use a temporary email?,"No, please use a valid email for registration."
+Why am I not receiving verification emails?,Check your spam folder and ensure your email is correct.
+Is there an age requirement for registration?,Users must be 18 or have parental consent to register.
+I want to book a doctor's appointment.,Please select a specialty and a preferred date and time.
+Can I reschedule my appointment?,"Yes, go to 'My Appointments' and select a new time slot."
+How do I cancel an appointment?,Go to 'My Appointments' and click 'Cancel' on the desired booking.
+What doctors are available today?,Here’s a list of available doctors. Choose a time slot.
+Can I book an emergency appointment?,"For emergencies, please visit the nearest hospital immediately."
+Can I book an appointment for someone else?,"Yes, you can schedule an appointment on behalf of a family member."
+How far in advance can I book an appointment?,Appointments can be scheduled up to 30 days in advance.
+Do I need an account to book an appointment?,"Yes, you need to log in or register first."
+Can I get a reminder for my appointment?,"Yes, you will receive reminders via email and SMS."
+Is there a fee for booking an appointment?,"Booking is free, but some doctors may have consultation fees."
+Can I upload an image for analysis?,"Yes, upload a clear image, and I will analyze it."
+What file formats are supported?,"PNG, JPG, and JPEG formats are supported."
+Will you diagnose my condition?,"I can provide an initial assessment, but consult a doctor for confirmation."
+Can I upload multiple images?,"Yes, multiple images can be uploaded for better analysis."
+Will my images be stored?,Images are processed securely and not stored permanently.
+How can I boost my immune system?,"Eat a balanced diet, exercise, sleep well, and stay hydrated."
+What are some home remedies for a cold?,"Try ginger tea, honey, steam inhalation, and rest."
+How much water should I drink daily?,Drink at least 8 glasses (2 liters) of water per day.
+What are the symptoms of diabetes?,"Frequent urination, thirst, weight loss, fatigue, and blurred vision."
+I think I have a simple fracture. What should I do?,"Immobilize the limb, apply ice, and seek medical help."
+What are the symptoms of a fracture?,"Severe pain, swelling, bruising, and possible deformity."
+How long does a simple fracture take to heal?,It usually heals in 6 to 8 weeks.
+Can I walk with a fractured foot?,Avoid putting weight on it and use crutches if needed.
